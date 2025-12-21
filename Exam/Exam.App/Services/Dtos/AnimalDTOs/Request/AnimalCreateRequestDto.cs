@@ -1,0 +1,8 @@
+﻿namespace Exam.App.Services.Dtos.AnimalDTOs.Request
+{
+    public class AnimalCreateRequestDto
+    {
+        public string Name { get; set; }
+        public double Mass { get; set; }
+    }
+}

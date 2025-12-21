@@ -69,9 +69,9 @@ public static class Startup
 
     public static void AddAuthenticationAndAuthorization(WebApplicationBuilder builder)
     {
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>()
+             .AddEntityFrameworkStores<AppDbContext>()
+             .AddDefaultTokenProviders();
 
         builder.Services.Configure<IdentityOptions>(options =>
         {

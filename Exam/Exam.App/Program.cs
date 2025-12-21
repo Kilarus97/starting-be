@@ -1,8 +1,12 @@
 using Exam.App;
 using Exam.App.Controllers.Middleware;
+using Exam.App.Domain;
+using Exam.App.Domain.Interface;
+using Exam.App.Infrastructure;
 using Exam.App.Infrastructure.Database;
 using Exam.App.Services;
 using Exam.App.Services.Mappers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,8 +23,11 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
 // Service and Repository Dependency Injection
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IAnimalService, AnimalService>();
 
 
 

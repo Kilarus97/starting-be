@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Exam.App.Domain;
+using Exam.App.Domain.Models;
 using Exam.App.Services.Dtos;
+using Exam.App.Services.Dtos.AnimalDTOs.Request;
+using Exam.App.Services.Dtos.AnimalDTOs.Response;
 
 namespace Exam.App.Services.Mappers
 {
@@ -9,6 +12,9 @@ namespace Exam.App.Services.Mappers
         public MappingProfile()
         {
             CreateMap<ApplicationUser, ProfileDto>();
+            CreateMap<AnimalCreateRequestDto, AnimalSpecies>();
+            CreateMap<AnimalUpdateRequestDto, AnimalSpecies>();
+            CreateMap<AnimalSpecies, AnimalResponseDto>();
         }
     }
 }
