@@ -41,8 +41,8 @@ namespace Exam.App.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAnimal(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAnimal([FromQuery]int id)
         {
             await _animalService.DeleteAsync(id);
             return NoContent();

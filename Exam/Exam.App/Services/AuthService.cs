@@ -68,12 +68,12 @@ public class AuthService : IAuthService
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, user.UserName),
-            new(ClaimTypes.NameIdentifier, user.UserName),
+            new("Username", user.UserName),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
         var roles = await _userManager.GetRolesAsync(user);
-        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+        claims.AddRange(roles.Select(role => new Claim("role", role)));
 
         var token = new JwtSecurityToken(
             issuer: _configuration["Jwt:Issuer"],

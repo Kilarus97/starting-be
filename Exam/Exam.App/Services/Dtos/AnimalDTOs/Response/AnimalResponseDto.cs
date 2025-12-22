@@ -6,6 +6,7 @@ namespace Exam.App.Services.Dtos.AnimalDTOs.Response
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Species { get; set; }
         public double? Mass { get; set; }
     }
 }

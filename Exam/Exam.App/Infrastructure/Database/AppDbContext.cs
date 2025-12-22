@@ -44,30 +44,31 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>
         modelBuilder.Entity<AnimalSpecies>(e =>
         {
             e.HasData(
-              new AnimalSpecies { Id = 1, Name = "Lav", CageId = 1 },
-              new AnimalSpecies { Id = 2, Name = "Tigar", CageId = 2 },
-              new AnimalSpecies { Id = 3, Name = "Slon" },
-              new AnimalSpecies { Id = 4, Name = "Žirafa" },
-              new AnimalSpecies { Id = 5, Name = "Zebra" },
-              new AnimalSpecies { Id = 6, Name = "Nosorog" },
-              new AnimalSpecies { Id = 7, Name = "Gepard" },
-              new AnimalSpecies { Id = 8, Name = "Hijena" },
-              new AnimalSpecies { Id = 9, Name = "Medved" },
-              new AnimalSpecies { Id = 10, Name = "Vuk" },
-              new AnimalSpecies { Id = 11, Name = "Lisica" },
-              new AnimalSpecies { Id = 12, Name = "Sova" },
-              new AnimalSpecies { Id = 13, Name = "Orao" },
-              new AnimalSpecies { Id = 14, Name = "Krokodil" },
-              new AnimalSpecies { Id = 15, Name = "Pingvin" },
-              new AnimalSpecies { Id = 16, Name = "Flamingo" },
-              new AnimalSpecies { Id = 17, Name = "Kengur" },
-              new AnimalSpecies { Id = 18, Name = "Panda" },
-              new AnimalSpecies { Id = 19, Name = "Lemur" },
-              new AnimalSpecies { Id = 20, Name = "Morski lav" }
+              new AnimalSpecies { Id = 1, Name = "Lav", Species = "Panthera leo", Mass = 190, CageId = 1 },
+              new AnimalSpecies { Id = 2, Name = "Tigar", Species = "Panthera tigris", Mass = 220, CageId = 2 },
+              new AnimalSpecies { Id = 3, Name = "Slon", Species = "Loxodonta africana", Mass = 6000, CageId = 3 },
+              new AnimalSpecies { Id = 4, Name = "Žirafa", Species = "Giraffa camelopardalis", Mass = 800, CageId = 3 },
+              new AnimalSpecies { Id = 5, Name = "Zebra", Species = "Equus quagga", Mass = 350, CageId = 1 },
+              new AnimalSpecies { Id = 6, Name = "Nosorog", Species = "Rhinocerotidae", Mass = 2300, CageId = 3 },
+              new AnimalSpecies { Id = 7, Name = "Gepard", Species = "Acinonyx jubatus", Mass = 72, CageId = 2 },
+              new AnimalSpecies { Id = 8, Name = "Hijena", Species = "Crocuta crocuta", Mass = 60, CageId = 2 },
+              new AnimalSpecies { Id = 9, Name = "Medved", Species = "Ursus arctos", Mass = 300, CageId = 3 },
+              new AnimalSpecies { Id = 10, Name = "Vuk", Species = "Canis lupus", Mass = 50, CageId = 7 },
+              new AnimalSpecies { Id = 11, Name = "Lisica", Species = "Vulpes vulpes", Mass = 8, CageId = 7 },
+              new AnimalSpecies { Id = 12, Name = "Sova", Species = "Strix aluco", Mass = 1.2, CageId = 4 },
+              new AnimalSpecies { Id = 13, Name = "Orao", Species = "Aquila chrysaetos", Mass = 6, CageId = 4 },
+              new AnimalSpecies { Id = 14, Name = "Krokodil", Species = "Crocodylus niloticus", Mass = 500, CageId = 5 },
+              new AnimalSpecies { Id = 15, Name = "Pingvin", Species = "Aptenodytes forsteri", Mass = 30, CageId = 6 },
+              new AnimalSpecies { Id = 16, Name = "Flamingo", Species = "Phoenicopterus roseus", Mass = 3, CageId = 4 },
+              new AnimalSpecies { Id = 17, Name = "Kengur", Species = "Macropus rufus", Mass = 85, CageId = 1 },
+              new AnimalSpecies { Id = 18, Name = "Panda", Species = "Ailuropoda melanoleuca", Mass = 100, CageId = 3 },
+              new AnimalSpecies { Id = 19, Name = "Lemur", Species = "Lemur catta", Mass = 3, CageId = 7 },
+              new AnimalSpecies { Id = 20, Name = "Morski lav", Species = "Zalophus californianus", Mass = 200, CageId = 6 }
             );
         });
 
-        
+
+
 
         modelBuilder.Entity<AnimalSpecies>().HasOne(a => a.Cage).WithMany(c => c.CagedAnimals).HasForeignKey(a => a.CageId).OnDelete(DeleteBehavior.Restrict);
 

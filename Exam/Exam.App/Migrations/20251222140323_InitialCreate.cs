@@ -183,6 +183,7 @@ namespace Exam.App.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
+                    Species = table.Column<string>(type: "text", nullable: false),
                     Mass = table.Column<double>(type: "double precision", nullable: true),
                     CageId = table.Column<int>(type: "integer", nullable: true)
                 },
@@ -195,31 +196,6 @@ namespace Exam.App.Migrations
                         principalTable: "Cages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.InsertData(
-                table: "AnimalSpecies",
-                columns: new[] { "Id", "CageId", "Mass", "Name" },
-                values: new object[,]
-                {
-                    { 3, null, null, "Slon" },
-                    { 4, null, null, "Žirafa" },
-                    { 5, null, null, "Zebra" },
-                    { 6, null, null, "Nosorog" },
-                    { 7, null, null, "Gepard" },
-                    { 8, null, null, "Hijena" },
-                    { 9, null, null, "Medved" },
-                    { 10, null, null, "Vuk" },
-                    { 11, null, null, "Lisica" },
-                    { 12, null, null, "Sova" },
-                    { 13, null, null, "Orao" },
-                    { 14, null, null, "Krokodil" },
-                    { 15, null, null, "Pingvin" },
-                    { 16, null, null, "Flamingo" },
-                    { 17, null, null, "Kengur" },
-                    { 18, null, null, "Panda" },
-                    { 19, null, null, "Lemur" },
-                    { 20, null, null, "Morski lav" }
                 });
 
             migrationBuilder.InsertData(
@@ -247,11 +223,29 @@ namespace Exam.App.Migrations
 
             migrationBuilder.InsertData(
                 table: "AnimalSpecies",
-                columns: new[] { "Id", "CageId", "Mass", "Name" },
+                columns: new[] { "Id", "CageId", "Mass", "Name", "Species" },
                 values: new object[,]
                 {
-                    { 1, 1, null, "Lav" },
-                    { 2, 2, null, "Tigar" }
+                    { 1, 1, 190.0, "Lav", "Panthera leo" },
+                    { 2, 2, 220.0, "Tigar", "Panthera tigris" },
+                    { 3, 3, 6000.0, "Slon", "Loxodonta africana" },
+                    { 4, 3, 800.0, "Žirafa", "Giraffa camelopardalis" },
+                    { 5, 1, 350.0, "Zebra", "Equus quagga" },
+                    { 6, 3, 2300.0, "Nosorog", "Rhinocerotidae" },
+                    { 7, 2, 72.0, "Gepard", "Acinonyx jubatus" },
+                    { 8, 2, 60.0, "Hijena", "Crocuta crocuta" },
+                    { 9, 3, 300.0, "Medved", "Ursus arctos" },
+                    { 10, 7, 50.0, "Vuk", "Canis lupus" },
+                    { 11, 7, 8.0, "Lisica", "Vulpes vulpes" },
+                    { 12, 4, 1.2, "Sova", "Strix aluco" },
+                    { 13, 4, 6.0, "Orao", "Aquila chrysaetos" },
+                    { 14, 5, 500.0, "Krokodil", "Crocodylus niloticus" },
+                    { 15, 6, 30.0, "Pingvin", "Aptenodytes forsteri" },
+                    { 16, 4, 3.0, "Flamingo", "Phoenicopterus roseus" },
+                    { 17, 1, 85.0, "Kengur", "Macropus rufus" },
+                    { 18, 3, 100.0, "Panda", "Ailuropoda melanoleuca" },
+                    { 19, 7, 3.0, "Lemur", "Lemur catta" },
+                    { 20, 6, 200.0, "Morski lav", "Zalophus californianus" }
                 });
 
             migrationBuilder.CreateIndex(

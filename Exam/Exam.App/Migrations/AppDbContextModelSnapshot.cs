@@ -115,6 +115,10 @@ namespace Exam.App.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Species")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CageId");
@@ -126,103 +130,161 @@ namespace Exam.App.Migrations
                         {
                             Id = 1,
                             CageId = 1,
-                            Name = "Lav"
+                            Mass = 190.0,
+                            Name = "Lav",
+                            Species = "Panthera leo"
                         },
                         new
                         {
                             Id = 2,
                             CageId = 2,
-                            Name = "Tigar"
+                            Mass = 220.0,
+                            Name = "Tigar",
+                            Species = "Panthera tigris"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Slon"
+                            CageId = 3,
+                            Mass = 6000.0,
+                            Name = "Slon",
+                            Species = "Loxodonta africana"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Žirafa"
+                            CageId = 3,
+                            Mass = 800.0,
+                            Name = "Žirafa",
+                            Species = "Giraffa camelopardalis"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Zebra"
+                            CageId = 1,
+                            Mass = 350.0,
+                            Name = "Zebra",
+                            Species = "Equus quagga"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Nosorog"
+                            CageId = 3,
+                            Mass = 2300.0,
+                            Name = "Nosorog",
+                            Species = "Rhinocerotidae"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Gepard"
+                            CageId = 2,
+                            Mass = 72.0,
+                            Name = "Gepard",
+                            Species = "Acinonyx jubatus"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Hijena"
+                            CageId = 2,
+                            Mass = 60.0,
+                            Name = "Hijena",
+                            Species = "Crocuta crocuta"
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Medved"
+                            CageId = 3,
+                            Mass = 300.0,
+                            Name = "Medved",
+                            Species = "Ursus arctos"
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Vuk"
+                            CageId = 7,
+                            Mass = 50.0,
+                            Name = "Vuk",
+                            Species = "Canis lupus"
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Lisica"
+                            CageId = 7,
+                            Mass = 8.0,
+                            Name = "Lisica",
+                            Species = "Vulpes vulpes"
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Sova"
+                            CageId = 4,
+                            Mass = 1.2,
+                            Name = "Sova",
+                            Species = "Strix aluco"
                         },
                         new
                         {
                             Id = 13,
-                            Name = "Orao"
+                            CageId = 4,
+                            Mass = 6.0,
+                            Name = "Orao",
+                            Species = "Aquila chrysaetos"
                         },
                         new
                         {
                             Id = 14,
-                            Name = "Krokodil"
+                            CageId = 5,
+                            Mass = 500.0,
+                            Name = "Krokodil",
+                            Species = "Crocodylus niloticus"
                         },
                         new
                         {
                             Id = 15,
-                            Name = "Pingvin"
+                            CageId = 6,
+                            Mass = 30.0,
+                            Name = "Pingvin",
+                            Species = "Aptenodytes forsteri"
                         },
                         new
                         {
                             Id = 16,
-                            Name = "Flamingo"
+                            CageId = 4,
+                            Mass = 3.0,
+                            Name = "Flamingo",
+                            Species = "Phoenicopterus roseus"
                         },
                         new
                         {
                             Id = 17,
-                            Name = "Kengur"
+                            CageId = 1,
+                            Mass = 85.0,
+                            Name = "Kengur",
+                            Species = "Macropus rufus"
                         },
                         new
                         {
                             Id = 18,
-                            Name = "Panda"
+                            CageId = 3,
+                            Mass = 100.0,
+                            Name = "Panda",
+                            Species = "Ailuropoda melanoleuca"
                         },
                         new
                         {
                             Id = 19,
-                            Name = "Lemur"
+                            CageId = 7,
+                            Mass = 3.0,
+                            Name = "Lemur",
+                            Species = "Lemur catta"
                         },
                         new
                         {
                             Id = 20,
-                            Name = "Morski lav"
+                            CageId = 6,
+                            Mass = 200.0,
+                            Name = "Morski lav",
+                            Species = "Zalophus californianus"
                         });
                 });
 
