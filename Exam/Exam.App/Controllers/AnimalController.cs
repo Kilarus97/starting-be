@@ -9,7 +9,6 @@ namespace Exam.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Administrator")]
     public class AnimalController : Controller
     {
         private readonly IAnimalService _animalService;
@@ -27,13 +26,24 @@ namespace Exam.App.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOneByIdAsync(int id)
+        {
+            var result = await _animalService.GetOneById(id);
+
+            return Ok(result);
+        }
+
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
+
         public async Task<IActionResult> AddAnimal(AnimalCreateRequestDto animalDto)
         {
             var result = await _animalService.AddAsync(animalDto);
             return Ok(result);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut]
         public async Task<IActionResult> UpdateAnimal(AnimalUpdateRequestDto animalDto)
         {
@@ -41,6 +51,7 @@ namespace Exam.App.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAnimal(int id)
         {

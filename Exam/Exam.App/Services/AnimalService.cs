@@ -30,6 +30,29 @@ namespace Exam.App.Services
         }
 
 
+        public async Task<AnimalResponseDto> GetOneById(int id)
+        {
+            try
+            {
+                var animal = await _unitOfWork.AnimalRepository.GetOneAsync(id);
+
+                if (animal == null)
+                {
+                    throw new NotFoundException(id);
+                }
+
+                // mapiranje entiteta u DTO
+                var dto = _mapper.Map<AnimalResponseDto>(animal); 
+                return dto;
+            }
+            catch (Exception ex)
+            {
+
+                throw new ApplicationException("Došlo je do greške prilikom dobavljanja životinje.", ex);
+            }
+        }
+
+
         public async Task<AnimalResponseDto> AddAsync(AnimalCreateRequestDto animalDto)
         {
             try
