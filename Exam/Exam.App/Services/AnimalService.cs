@@ -25,7 +25,7 @@ namespace Exam.App.Services
         }
         public async Task<IEnumerable<AnimalResponseDto>> GetAllAsync()
         {
-            IEnumerable<AnimalSpecies> animals = await _unitOfWork.AnimalRepository.GetAllAsync();
+            IEnumerable<AnimalSpecies> animals = await _unitOfWork.AnimalRepository.GetAllWithCages();
             return _mapper.Map<List<AnimalResponseDto>>(animals.ToList());
         }
 
@@ -34,7 +34,7 @@ namespace Exam.App.Services
         {
             try
             {
-                var animal = await _unitOfWork.AnimalRepository.GetOneAsync(id);
+                var animal = await _unitOfWork.AnimalRepository.GetOneWithCage(id);
 
                 if (animal == null)
                 {
@@ -59,6 +59,17 @@ namespace Exam.App.Services
             {
                 var animal = _mapper.Map<AnimalSpecies>(animalDto);
 
+                if (animalDto.CageId != null)
+                {
+                    var cage = await _unitOfWork.CagesRepository.GetOneAsync(animalDto.CageId.Value);
+
+                    if (cage == null)
+
+                        throw new NotFoundException(animalDto.CageId.Value);
+                }
+
+                animal.CageId = animalDto.CageId;
+
                 await _unitOfWork.AnimalRepository.AddAsync(animal);
 
                 await _unitOfWork.CompleteAsync();
@@ -79,23 +90,45 @@ namespace Exam.App.Services
                 var animal = await _unitOfWork.AnimalRepository.GetOneAsync(animalDto.Id);
 
                 if (animal == null)
-                {
                     throw new NotFoundException(animalDto.Id);
+
+                if (animalDto.CageId != null)
+                {
+                    var cage = await _unitOfWork.CagesRepository.GetOneAsync(animalDto.CageId.Value);
+
+                    if (cage == null)
+                        throw new NotFoundException(animalDto.CageId.Value);
+
+                    // 🚨 Provera: da li je životinja već u tom kavezu
+                    if (animal.CageId == animalDto.CageId)
+                        throw new InvalidOperationException(
+                            $"Životinja sa ID {animal.Id} je već smeštena u kavez {animalDto.CageId}.");
                 }
+
                 _mapper.Map(animalDto, animal);
 
-                _unitOfWork.AnimalRepository.Update(animal);
+                // Ručno dodeli CageId jer AutoMapper može da preskoči null vrednosti
+                animal.CageId = animalDto.CageId;
 
+                _unitOfWork.AnimalRepository.Update(animal);
                 await _unitOfWork.CompleteAsync();
 
                 return _mapper.Map<AnimalResponseDto>(animal);
             }
+            catch (NotFoundException)
+            {
+                throw; // propagiraj dalje
+            }
+            catch (InvalidOperationException)
+            {
+                throw; // propagiraj dalje
+            }
             catch (Exception ex)
             {
-
-                throw new ApplicationException("Došlo je do greške prilikom dodavanja životinje.", ex);
+                throw new ApplicationException("Došlo je do greške prilikom izmene životinje.", ex);
             }
         }
+
 
         public async Task DeleteAsync(int id)
         {

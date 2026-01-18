@@ -8,10 +8,12 @@ namespace Exam.App.Infrastructure
     {
         private readonly AppDbContext _dbContext;
         public IAnimalRepository AnimalRepository { get; set; }
+        public ICagesRepository CagesRepository { get; set; }
         public UnitOfWork(AppDbContext dbContext)
         {
             _dbContext = dbContext;
             AnimalRepository = new AnimalRepository(dbContext);
+            CagesRepository = new CagesRepository(dbContext);
 
         }
 

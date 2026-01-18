@@ -1,13 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using Exam.App.Domain.Models;
 
-namespace Exam.App.Domain.Models
+namespace Exam.App.Services.Dtos.CageDTOs.Response
 {
-    public class Cage
+    public class CageResponseDto
     {
         public int Id { get; set; }
         public string Code { get; set; }
-
-        [JsonIgnore]
         public ICollection<AnimalSpecies>? CagedAnimals { get; set; } = new List<AnimalSpecies>();
     }
 }

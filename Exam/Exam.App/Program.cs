@@ -28,6 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAnimalService, AnimalService>();
+builder.Services.AddScoped<ICageService, CageService>();
 
 
 

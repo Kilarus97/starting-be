@@ -4,6 +4,8 @@ using Exam.App.Domain.Models;
 using Exam.App.Services.Dtos;
 using Exam.App.Services.Dtos.AnimalDTOs.Request;
 using Exam.App.Services.Dtos.AnimalDTOs.Response;
+using Exam.App.Services.Dtos.CageDTOs.Request;
+using Exam.App.Services.Dtos.CageDTOs.Response;
 
 namespace Exam.App.Services.Mappers
 {
@@ -15,6 +17,9 @@ namespace Exam.App.Services.Mappers
             CreateMap<AnimalCreateRequestDto, AnimalSpecies>();
             CreateMap<AnimalUpdateRequestDto, AnimalSpecies>();
             CreateMap<AnimalSpecies, AnimalResponseDto>();
+            CreateMap<CageCreateRequestDto, Cage>();
+            CreateMap<CageUpdateRequestDto, Cage>();
+            CreateMap<Cage,CageResponseDto>();
         }
     }
 }
