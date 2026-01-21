@@ -1,4 +1,5 @@
-﻿using Delivery.Infrastructure.Repositories;
+﻿using BookstoreApplication.DTO;
+using Delivery.Infrastructure.Repositories;
 using Exam.App.Domain.Models;
 
 namespace Exam.App.Domain.Interface
@@ -7,5 +8,6 @@ namespace Exam.App.Domain.Interface
     {
         Task<List<AnimalSpecies>> GetAllWithCages();
         Task<AnimalSpecies> GetOneWithCage(int Id);
+        Task<List<AnimalSpecies>> SearchAnimalDetailsAsync(AnimalSearchDto search);
     }
 }

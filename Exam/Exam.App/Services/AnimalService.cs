@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using AutoMapper;
+using BookstoreApplication.DTO;
 using Exam.App.Domain;
 using Exam.App.Domain.Interface;
 using Exam.App.Domain.Models;
@@ -27,6 +28,20 @@ namespace Exam.App.Services
         {
             IEnumerable<AnimalSpecies> animals = await _unitOfWork.AnimalRepository.GetAllWithCages();
             return _mapper.Map<List<AnimalResponseDto>>(animals.ToList());
+        }
+
+
+        public async Task<List<AnimalResponseDto>> SearchAnimalDetailsAsync(AnimalSearchDto search)
+        {
+            try
+            {
+                var result = await _unitOfWork.AnimalRepository.SearchAnimalDetailsAsync(search);
+                return _mapper.Map<List<AnimalResponseDto>>(result.ToList());
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Došlo je do greške prilikom dobavljanja životinje.", ex);
+            }
         }
 
 

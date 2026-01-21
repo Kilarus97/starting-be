@@ -1,6 +1,9 @@
-﻿using Exam.App.Services;
+﻿using BookstoreApplication.DTO;
+using Exam.App.Domain.Models;
+using Exam.App.Services;
 using Exam.App.Services.Dtos;
 using Exam.App.Services.Dtos.AnimalDTOs.Request;
+using Exam.App.Services.Dtos.AnimalDTOs.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -33,6 +36,19 @@ namespace Exam.App.Controllers
 
             return Ok(result);
         }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost("search")]
+        public async Task<ActionResult<List<AnimalResponseDto>>> SearchAnimalDetails([FromBody] AnimalSearchDto search)
+        {
+            var result = await _animalService.SearchAnimalDetailsAsync(search);
+
+            if (result == null || !result.Any())
+                return NotFound("Nema pronađenih životinja.");
+
+            return Ok(result);
+        }
+
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]

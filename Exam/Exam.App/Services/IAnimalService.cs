@@ -1,4 +1,5 @@
-﻿using Exam.App.Services.Dtos.AnimalDTOs.Request;
+﻿using BookstoreApplication.DTO;
+using Exam.App.Services.Dtos.AnimalDTOs.Request;
 using Exam.App.Services.Dtos.AnimalDTOs.Response;
 
 namespace Exam.App.Services
@@ -10,5 +11,6 @@ namespace Exam.App.Services
         Task<IEnumerable<AnimalResponseDto>> GetAllAsync();
         Task<AnimalResponseDto> UpdateAsync(AnimalUpdateRequestDto animalDto);
         Task DeleteAsync(int id);
+        Task<List<AnimalResponseDto>> SearchAnimalDetailsAsync(AnimalSearchDto search);
     }
 }
